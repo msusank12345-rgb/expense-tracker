@@ -28,12 +28,37 @@ def main():
 
 
 def add_expense():
-    pass
+    date = input("Enter date (YYYY-MM-DD): ")
+    category = input("Enter category: ")
+    description = input("Enter description: ")
+    amount = input("Enter amount: ")
+
+    file_exists = os.path.isfile(FILE_NAME)
+
+    with open(FILE_NAME, "a", newline="") as file:
+        writer = csv.writer(file)
+
+        if not file_exists or os.path.getsize(FILE_NAME) == 0:
+            writer.writerow(["Date", "Category", "Description", "Amount"])
+
+        writer.writerow([date, category, description, amount])
+
+    print("\nExpense added successfully!")
 
 
 def view_expenses():
-    pass
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
 
+    with open(FILE_NAME, "r") as file:
+        reader = csv.reader(file)
+
+        print("\nYour Expenses:")
+        print("-" * 50)
+
+        for row in reader:
+            print(" | ".join(row))
 
 if __name__ == "__main__":
     main()
