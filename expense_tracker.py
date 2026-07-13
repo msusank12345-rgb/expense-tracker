@@ -5,9 +5,10 @@ FILE_NAME = "expenses.csv"
 
 
 def main():
+    print("Welcome to Expense Tracker!")
     while True:
         print("\n" + "=" * 40)
-        print("      Expense Tracker")
+        print("Expense Tracker")
         print("=" * 40)
         print("1. Add Expense")
         print("2. View Expenses")
@@ -20,7 +21,7 @@ def main():
         elif choice == "2":
             view_expenses()
         elif choice == "3":
-            print("Goodbye!")
+            print("Thank you for using Expense Tracker. Goodbye!")
             break
         else:
             print("Invalid choice!")
