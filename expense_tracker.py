@@ -57,8 +57,14 @@ def view_expenses():
         print("\nYour Expenses:")
         print("-" * 50)
 
+        count = 0
+
         for row in reader:
-            print(" | ".join(row))
+          print(" | ".join(row))
+          count += 1
+
+        print("-" * 50)
+        print(f"Total records: {count - 1}")
 
 if __name__ == "__main__":
     main()
