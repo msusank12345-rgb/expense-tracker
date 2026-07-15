@@ -54,8 +54,8 @@ def view_expenses():
     with open(FILE_NAME, "r") as file:
         reader = csv.reader(file)
 
-        print("\nYour Expenses:")
-        print("-" * 50)
+        print("\n===== Your Expenses =====")
+        print("=" * 60)
 
         count = 0
 
