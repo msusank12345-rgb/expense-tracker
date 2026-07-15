@@ -31,7 +31,7 @@ def add_expense():
     date = input("Enter date (YYYY-MM-DD): ")
     category = input("Enter category: ")
     description = input("Enter description: ")
-    amount = input("Enter amount: ")
+    amount = float(input("Enter amount: "))
 
     file_exists = os.path.isfile(FILE_NAME)
 
@@ -41,7 +41,7 @@ def add_expense():
         if not file_exists or os.path.getsize(FILE_NAME) == 0:
             writer.writerow(["Date", "Category", "Description", "Amount"])
 
-        writer.writerow([date, category, description, amount])
+        writer.writerow([date, category, description, f"{amount:.2f}"])
 
     print("\nExpense added successfully!")
 
