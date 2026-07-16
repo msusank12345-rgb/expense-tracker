@@ -13,21 +13,24 @@ def main():
         print("1. Add Expense")
         print("2. View Expenses")
         print("3. Search by Category")
-        print("4. Exit")
+        print("4. Delete Expense")
+        print("5. Exit")
 
         choice = input("\nChoose an option: ")
 
         if choice == "1":
-            add_expense()
+         add_expense()
         elif choice == "2":
-            view_expenses()
+         view_expenses()
         elif choice == "3":
-            search_by_category()
+         search_by_category()
         elif choice == "4":
-            print("Thank you for using Expense Tracker. Goodbye!")
-            break
+         delete_expense()
+        elif choice == "5":
+         print("Thank you for using Expense Tracker. Goodbye!")
+         break
         else:
-            print("Invalid choice!")
+         print("Invalid choice!")
 
 
 def add_expense():
@@ -101,5 +104,38 @@ def search_by_category():
 
         if not found:
             print("No matching expenses found.")
+def delete_expense():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    with open(FILE_NAME, "r") as file:
+        reader = list(csv.reader(file))
+
+    if len(reader) <= 1:
+        print("\nNo expenses to delete.")
+        return
+
+    print("\n===== Expenses =====")
+
+    for i, row in enumerate(reader[1:], start=1):
+        print(f"{i}. {' | '.join(row)}")
+
+    try:
+        choice = int(input("\nEnter expense number to delete: "))
+
+        if 1 <= choice <= len(reader) - 1:
+            deleted = reader.pop(choice)
+
+            with open(FILE_NAME, "w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerows(reader)
+
+            print(f"\nDeleted: {' | '.join(deleted)}")
+        else:
+            print("Invalid expense number.")
+
+    except ValueError:
+        print("Please enter a valid number.")
 if __name__ == "__main__":
     main()
