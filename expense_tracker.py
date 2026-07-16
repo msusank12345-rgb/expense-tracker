@@ -12,7 +12,8 @@ def main():
         print("=" * 40)
         print("1. Add Expense")
         print("2. View Expenses")
-        print("3. Exit")
+        print("3. Search by Category")
+        print("4. Exit")
 
         choice = input("\nChoose an option: ")
 
@@ -21,6 +22,8 @@ def main():
         elif choice == "2":
             view_expenses()
         elif choice == "3":
+            search_by_category()
+        elif choice == "4":
             print("Thank you for using Expense Tracker. Goodbye!")
             break
         else:
@@ -74,5 +77,29 @@ def view_expenses():
         print(f"Total records: {count}")
         print(f"Total spent: Rs. {total:.2f}")
 
+def search_by_category():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    category = input("\nEnter category to search: ").strip().lower()
+
+    with open(FILE_NAME, "r") as file:
+        reader = csv.reader(file)
+
+        next(reader, None)
+
+        found = False
+
+        print("\nMatching Expenses")
+        print("-" * 50)
+
+        for row in reader:
+            if row[1].lower() == category:
+                print(" | ".join(row))
+                found = True
+
+        if not found:
+            print("No matching expenses found.")
 if __name__ == "__main__":
     main()
