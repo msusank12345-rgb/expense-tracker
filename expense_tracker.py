@@ -57,14 +57,22 @@ def view_expenses():
         print("\n===== Your Expenses =====")
         print("=" * 60)
 
+        total = 0
         count = 0
 
-        for row in reader:
-          print(" | ".join(row))
-          count += 1
+        # Skip the header row
+        next(reader, None)
 
-        print("-" * 50)
-        print(f"Total records: {count - 1}")
+        for row in reader:
+            print(" | ".join(row))
+            count += 1
+
+            # Amount is in the last column
+            total += float(row[3])
+
+        print("-" * 60)
+        print(f"Total records: {count}")
+        print(f"Total spent: Rs. {total:.2f}")
 
 if __name__ == "__main__":
     main()
