@@ -6,12 +6,19 @@ A beginner-friendly Python command-line application for recording and viewing da
 
 * Add a new expense
 * View all saved expenses
-* Store expenses in a CSV file
+* Search expenses by category
+* Search expenses by date
+* Edit existing expenses
+* Delete expenses
+* Sort expenses by amount (Ascending/Descending)
+* Automatically calculate total spending
+* Store all data in a CSV file
 
 ## 🛠️ Technologies Used
 
 * Python
-* CSV File Handling
+* CSV (for data storage)
+* File Handling (`csv`, `os`)
 
 ## 📂 Project Structure
 
@@ -38,13 +45,22 @@ python expense_tracker.py
 
 *Screenshot will be added later.*
 
+## ✅ Current Features
+
+- Add, edit, and delete expenses
+- Search by category
+- Search by date
+- Sort expenses by amount
+- View total spending
+- Save data using CSV files
+
 ## 🎯 Future Improvements
 
-* Edit existing expenses
-* Delete expenses
-* Filter expenses by category
-* Display total spending
-* Monthly expense summary
+* Export expenses to a text or CSV report
+* Filter expenses by month
+* Set a monthly budget and show warnings
+* Display expense statistics
+* Add data visualization with charts
 
 ## 👨‍💻 Author
 
