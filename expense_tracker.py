@@ -13,9 +13,10 @@ def main():
         print("1. Add Expense")
         print("2. View Expenses")
         print("3. Search by Category")
-        print("4. Delete Expense")
-        print("5. Edit Expense")
-        print("6. Exit")
+        print("4. Search by Date")
+        print("5. Delete Expense")
+        print("6. Edit Expense")
+        print("7. Exit")
 
         choice = input("\nChoose an option: ")
 
@@ -26,10 +27,12 @@ def main():
         elif choice == "3":
          search_by_category()
         elif choice == "4":
-         delete_expense()
+         search_by_date()
         elif choice == "5":
-          edit_expense()
+         delete_expense()
         elif choice == "6":
+          edit_expense()
+        elif choice == "7":
          print("Thank you for using Expense Tracker. Goodbye!")
         break  
 
@@ -104,6 +107,32 @@ def search_by_category():
 
         if not found:
             print("No matching expenses found.")
+
+def search_by_date():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    date = input("\nEnter date (YYYY-MM-DD): ").strip()
+
+    with open(FILE_NAME, "r") as file:
+        reader = csv.reader(file)
+
+        next(reader, None)
+
+        found = False
+
+        print("\nMatching Expenses")
+        print("-" * 50)
+
+        for row in reader:
+            if row[0] == date:
+                print(" | ".join(row))
+                found = True
+
+        if not found:
+            print("No expenses found for that date.")
+            
 def delete_expense():
     if not os.path.exists(FILE_NAME):
         print("\nNo expenses found.")
