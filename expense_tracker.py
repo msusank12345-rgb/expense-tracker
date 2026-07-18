@@ -16,7 +16,8 @@ def main():
         print("4. Search by Date")
         print("5. Delete Expense")
         print("6. Edit Expense")
-        print("7. Exit")
+        print("7. Sort Expenses by Amount")
+        print("8. Exit")
 
         choice = input("\nChoose an option: ")
 
@@ -33,6 +34,8 @@ def main():
         elif choice == "6":
           edit_expense()
         elif choice == "7":
+         sort_by_amount()
+        elif choice == "8":
          print("Thank you for using Expense Tracker. Goodbye!")
         break  
 
@@ -132,7 +135,7 @@ def search_by_date():
 
         if not found:
             print("No expenses found for that date.")
-            
+
 def delete_expense():
     if not os.path.exists(FILE_NAME):
         print("\nNo expenses found.")
@@ -209,5 +212,28 @@ def edit_expense():
 
     except ValueError:
         print("Please enter a valid number.")
+def sort_by_amount():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    with open(FILE_NAME, "r") as file:
+        reader = csv.reader(file)
+
+        header = next(reader)
+        expenses = list(reader)
+
+    if not expenses:
+        print("\nNo expenses to sort.")
+        return
+
+    expenses.sort(key=lambda row: float(row[3]))
+
+    print("\n===== Expenses Sorted by Amount =====")
+    print("=" * 60)
+
+    for row in expenses:
+        print(" | ".join(row))
+
 if __name__ == "__main__":
     main()
