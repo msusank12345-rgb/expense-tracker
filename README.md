@@ -1,6 +1,6 @@
 # 💰 Expense Tracker
 
-A beginner-friendly Python command-line application for recording and viewing daily expenses.
+A beginner-friendly Python command-line application for managing daily expenses using CSV file storage. Users can add, view, edit, search, delete, and sort expenses through a simple menu-driven interface.
 
 ## 📌 Features
 
@@ -61,6 +61,10 @@ python expense_tracker.py
 * Set a monthly budget and show warnings
 * Display expense statistics
 * Add data visualization with charts
+
+## 📄 License
+
+This project is open source and available under the MIT License.
 
 ## 👨‍💻 Author
 
