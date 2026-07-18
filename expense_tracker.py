@@ -14,7 +14,8 @@ def main():
         print("2. View Expenses")
         print("3. Search by Category")
         print("4. Delete Expense")
-        print("5. Exit")
+        print("5. Edit Expense")
+        print("6. Exit")
 
         choice = input("\nChoose an option: ")
 
@@ -27,11 +28,10 @@ def main():
         elif choice == "4":
          delete_expense()
         elif choice == "5":
+          edit_expense()
+        elif choice == "6":
          print("Thank you for using Expense Tracker. Goodbye!")
-         break
-        else:
-         print("Invalid choice!")
-
+        break  
 
 def add_expense():
     date = input("Enter date (YYYY-MM-DD): ")
@@ -132,6 +132,49 @@ def delete_expense():
                 writer.writerows(reader)
 
             print(f"\nDeleted: {' | '.join(deleted)}")
+        else:
+            print("Invalid expense number.")
+
+    except ValueError:
+        print("Please enter a valid number.")
+        
+def edit_expense():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    with open(FILE_NAME, "r") as file:
+        rows = list(csv.reader(file))
+
+    if len(rows) <= 1:
+        print("\nNo expenses to edit.")
+        return
+
+    print("\n===== Expenses =====")
+    for i, row in enumerate(rows[1:], start=1):
+        print(f"{i}. {' | '.join(row)}")
+
+    try:
+        choice = int(input("\nEnter expense number to edit: "))
+
+        if 1 <= choice <= len(rows) - 1:
+            print("\nLeave blank to keep the current value.")
+
+            current = rows[choice]
+
+            date = input(f"Date ({current[0]}): ") or current[0]
+            category = input(f"Category ({current[1]}): ") or current[1]
+            description = input(f"Description ({current[2]}): ") or current[2]
+            amount = input(f"Amount ({current[3]}): ") or current[3]
+
+            rows[choice] = [date, category, description, amount]
+
+            with open(FILE_NAME, "w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerows(rows)
+
+            print("\nExpense updated successfully!")
+
         else:
             print("Invalid expense number.")
 
