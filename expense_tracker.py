@@ -216,7 +216,8 @@ def edit_expense():
                 writer = csv.writer(file)
                 writer.writerows(rows)
 
-            print("\nExpense updated successfully!")
+            print("Updated Expense:")
+            print(" | ".join(rows[choice]))
 
         else:
             print("Invalid expense number.")
