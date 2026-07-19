@@ -245,6 +245,10 @@ def sort_by_amount():
 
     for row in expenses:
         print(" | ".join(row))
+    total = sum(float(row[3]) for row in expenses)
+
+    print("-" * 60)
+    print(f"Total Expenses: Rs. {total:.2f}")
 
 if __name__ == "__main__":
     main()
