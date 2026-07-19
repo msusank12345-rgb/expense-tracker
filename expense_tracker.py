@@ -227,9 +227,9 @@ def sort_by_amount():
         print("\nNo expenses to sort.")
         return
 
-    expenses.sort(key=lambda row: float(row[3]))
+    expenses.sort(key=lambda row: float(row[3]), reverse=True)
 
-    print("\n===== Expenses Sorted by Amount =====")
+    print("\n===== Expenses Sorted by Amount (Highest to Lowest) =====")
     print("=" * 60)
 
     for row in expenses:
