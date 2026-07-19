@@ -43,7 +43,16 @@ def add_expense():
     date = input("Enter date (YYYY-MM-DD): ")
     category = input("Enter category: ")
     description = input("Enter description: ")
-    amount = float(input("Enter amount: "))
+    while True:
+        try:
+           amount = float(input("Enter amount: "))
+
+           if amount <= 0:
+             print("Amount must be greater than 0.")
+             continue
+             break
+        except ValueError:
+         print("Please enter a valid number.")
 
     file_exists = os.path.isfile(FILE_NAME)
 
