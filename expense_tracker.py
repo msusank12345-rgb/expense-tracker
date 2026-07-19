@@ -110,6 +110,7 @@ def search_by_category():
         found = False
 
         print("\nMatching Expenses")
+        print("Date | Category | Description | Amount")
         print("-" * 50)
 
         for row in reader:
@@ -135,6 +136,7 @@ def search_by_date():
         found = False
 
         print("\nMatching Expenses")
+        print("Date | Category | Description | Amount")
         print("-" * 50)
 
         for row in reader:
