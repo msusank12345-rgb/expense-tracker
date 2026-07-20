@@ -17,7 +17,9 @@ def main():
         print("5. Delete Expense")
         print("6. Edit Expense")
         print("7. Sort Expenses by Amount")
-        print("8. Exit")
+        print("8. Monthly Report")
+        print("9. Expense Summary")
+        print("10. Exit")
 
         choice = input("\nChoose an option: ")
 
@@ -36,8 +38,14 @@ def main():
         elif choice == "7":
          sort_by_amount()
         elif choice == "8":
+         monthly_report()
+        elif choice == "9":
+         expense_summary()
+        elif choice == "10":
          print("Thank you for using Expense Tracker. Goodbye!")
-        break  
+         break
+        else:
+         print("Invalid choice.")
 
 def add_expense():
     date = input("Enter date (YYYY-MM-DD): ")
@@ -250,6 +258,36 @@ def sort_by_amount():
 
     print("-" * 60)
     print(f"Total Expenses: Rs. {total:.2f}")
+
+def monthly_report():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    month = input("\nEnter month (YYYY-MM): ").strip()
+
+    total = 0
+    found = False
+
+    with open(FILE_NAME, "r") as file:
+        reader = csv.reader(file)
+
+        next(reader)
+
+        print(f"\n===== Expenses for {month} =====")
+        print("-" * 60)
+
+        for row in reader:
+            if row[0].startswith(month):
+                print(" | ".join(row))
+                total += float(row[3])
+                found = True
+
+    if found:
+        print("-" * 60)
+        print(f"Total spent in {month}: Rs. {total:.2f}")
+    else:
+        print("No expenses found for this month.")
 
 if __name__ == "__main__":
     main()
