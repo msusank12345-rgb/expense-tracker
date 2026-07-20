@@ -289,5 +289,42 @@ def monthly_report():
     else:
         print("No expenses found for this month.")
 
+def expense_summary():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    summary = {}
+
+    with open(FILE_NAME, "r") as file:
+        reader = csv.reader(file)
+
+        next(reader)
+
+        for row in reader:
+            category = row[1]
+            amount = float(row[3])
+
+            if category in summary:
+                summary[category] += amount
+            else:
+                summary[category] = amount
+
+    if not summary:
+        print("\nNo expenses found.")
+        return
+
+    print("\n===== Expense Summary =====")
+    print("-" * 40)
+
+    grand_total = 0
+
+    for category, amount in summary.items():
+        print(f"{category:<15} Rs. {amount:.2f}")
+        grand_total += amount
+
+    print("-" * 40)
+    print(f"Grand Total: Rs. {grand_total:.2f}")
+
 if __name__ == "__main__":
     main()
