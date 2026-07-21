@@ -54,14 +54,14 @@ def add_expense():
     while True:
         try:
            amount = float(input("Enter amount: "))
-
            if amount <= 0:
              print("Amount must be greater than 0.")
              continue
-             break
-        except ValueError:
-         print("Please enter a valid number.")
 
+           break
+
+        except ValueError:
+          print("Please enter a valid number.")
     file_exists = os.path.isfile(FILE_NAME)
 
     with open(FILE_NAME, "a", newline="") as file:
