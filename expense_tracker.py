@@ -216,7 +216,21 @@ def edit_expense():
             date = input(f"Date ({current[0]}): ") or current[0]
             category = input(f"Category ({current[1]}): ") or current[1]
             description = input(f"Description ({current[2]}): ") or current[2]
-            amount = input(f"Amount ({current[3]}): ") or current[3]
+            
+            while True:
+               amount = input(f"Amount ({current[3]}): ")
+
+               if amount == "":
+                amount = current[3]
+                break
+
+                try:
+                    if float(amount) <= 0:
+                        print("Amount must be greater than 0.")
+                        continue
+                    break
+                except ValueError:
+                    print("Enter a valid amount.")
 
             rows[choice] = [date, category, description, amount]
 
