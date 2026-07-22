@@ -1,4 +1,5 @@
 import csv
+from itertools import count
 import os
 
 FILE_NAME = "expenses.csv"
@@ -83,25 +84,24 @@ def view_expenses():
     with open(FILE_NAME, "r") as file:
         reader = csv.reader(file)
 
-        print("\n===== Your Expenses =====")
-        print("=" * 60)
+        print("\n================ Your Expenses ================")
+        print(f"{'No.':<5}{'Date':<15}{'Category':<15}{'Description':<20}{'Amount'}")
+        print("-" * 70)
 
         total = 0
         count = 0
 
-        # Skip the header row
         next(reader, None)
 
         for row in reader:
-            print(" | ".join(row))
             count += 1
-
-            # Amount is in the last column
             total += float(row[3])
 
-        print("-" * 60)
-        print(f"Total records: {count}")
-        print(f"Total spent: Rs. {total:.2f}")
+            print(f"{count:<5}{row[0]:<15}{row[1]:<15}{row[2]:<20}Rs. {float(row[3]):.2f}")
+
+        print("-" * 70)
+        print(f"Total Records : {count}")
+        print(f"Total Spent   : Rs. {total:.2f}")
 
 def search_by_category():
     if not os.path.exists(FILE_NAME):
@@ -122,7 +122,7 @@ def search_by_category():
         print("-" * 50)
 
         for row in reader:
-            if row[1].lower() == category:
+            if category in row[1].lower():
                 print(" | ".join(row))
                 found = True
 
@@ -221,15 +221,15 @@ def edit_expense():
                amount = input(f"Amount ({current[3]}): ")
 
                if amount == "":
-                amount = current[3]
-                break
+                    amount = current[3]
+                    break
 
-                try:
+               try:
                     if float(amount) <= 0:
                         print("Amount must be greater than 0.")
                         continue
                     break
-                except ValueError:
+               except ValueError:
                     print("Enter a valid amount.")
 
             rows[choice] = [date, category, description, amount]
@@ -254,7 +254,7 @@ def sort_by_amount():
     with open(FILE_NAME, "r") as file:
         reader = csv.reader(file)
 
-        header = next(reader)
+        next(reader)
         expenses = list(reader)
 
     if not expenses:
