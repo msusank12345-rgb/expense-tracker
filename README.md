@@ -1,24 +1,37 @@
 # 💰 Expense Tracker
 
-A beginner-friendly Python command-line application for managing daily expenses using CSV file storage. Users can add, view, edit, search, delete, and sort expenses through a simple menu-driven interface.
+A beginner-friendly Python command-line application for managing daily expenses using CSV file storage. This project provides a simple menu-driven interface that allows users to record, organize, search, edit, and analyze their expenses with useful statistics and reports.
+
+---
 
 ## 📌 Features
 
-* Add a new expense
-* View all saved expenses
-* Search expenses by category
-* Search expenses by date
-* Edit existing expenses
-* Delete expenses
-* Sort expenses by amount (Ascending/Descending)
-* Automatically calculate total spending
-* Store all data in a CSV file
+- ➕ Add new expenses with date, category, description, and amount
+- 📋 View all saved expenses in a formatted table
+- 🔍 Search expenses by category
+- 📅 Search expenses by date
+- ✏️ Edit existing expense records
+- 🗑️ Delete expenses with confirmation before removal
+- 📊 Sort expenses by amount (Highest to Lowest)
+- 📆 Generate a monthly expense report
+- 📈 View an expense summary grouped by category
+- 💸 Display the highest expense
+- 💰 Display the lowest expense
+- 📉 Calculate the average expense
+- 💵 Automatically calculate total spending
+- ✅ Input validation for expense amounts
+- 💾 Store all expense data in a CSV file
+
+---
 
 ## 🛠️ Technologies Used
 
-* Python
-* CSV (for data storage)
-* File Handling (`csv`, `os`)
+- Python 3
+- CSV Module
+- OS Module
+- File Handling
+
+---
 
 ## 📂 Project Structure
 
@@ -31,41 +44,104 @@ expense-tracker-python/
 └── images/
 ```
 
+---
+
 ## 🚀 How to Run
 
-1. Clone this repository.
-2. Open the project in Visual Studio Code.
-3. Run the following command:
+1. Clone this repository:
+
+```bash
+git clone https://github.com/your-username/expense-tracker-python.git
+```
+
+2. Navigate to the project folder:
+
+```bash
+cd expense-tracker-python
+```
+
+3. Run the program:
 
 ```bash
 python expense_tracker.py
 ```
 
-## 📸 Screenshot
+---
 
-*Screenshot will be added later.*
+## 📸 Screenshots
 
-## ✅ Current Features
+Screenshots of the application will be added soon.
 
-- Add, edit, and delete expenses
-- Search by category
-- Search by date
-- Sort expenses by amount
-- View total spending
-- Save data using CSV files
+---
+
+## 📋 Menu Options
+
+```text
+1. Add Expense
+2. View Expenses
+3. Search by Category
+4. Search by Date
+5. Delete Expense
+6. Edit Expense
+7. Sort Expenses by Amount
+8. Monthly Report
+9. Expense Summary
+10. Highest Expense
+11. Lowest Expense
+12. Average Expense
+13. Exit
+```
+
+---
+
+## 📊 Reports & Statistics
+
+The application can generate several useful reports, including:
+
+- Monthly expense report
+- Category-wise expense summary
+- Highest expense
+- Lowest expense
+- Average expense
+- Total amount spent
+- Total number of expense records
+
+---
+
+## 🔒 Input Validation
+
+The application includes basic validation to improve data quality:
+
+- Expense amount must be greater than zero.
+- Only valid numeric values are accepted for amounts.
+- Prevents editing or deleting invalid expense records.
+- Displays helpful messages when no expenses are found.
+
+---
 
 ## 🎯 Future Improvements
 
-* Export expenses to a text or CSV report
-* Filter expenses by month
-* Set a monthly budget and show warnings
-* Display expense statistics
-* Add data visualization with charts
+Possible future enhancements include:
+
+- Budget tracking and spending limits
+- Export reports to PDF or Excel
+- Data visualization using Matplotlib
+- Search by amount range
+- Multiple user accounts
+- Password protection
+- SQLite database support
+- Graphical User Interface (GUI) using Tkinter or CustomTkinter
+
+---
 
 ## 📄 License
 
 This project is open source and available under the MIT License.
 
+---
+
 ## 👨‍💻 Author
 
 **Susank Magar**
+
+GitHub: https://github.com/msusank12345-rgb
