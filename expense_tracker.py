@@ -372,5 +372,30 @@ def highest_expense():
     print(f"Category    : {highest[1]}")
     print(f"Description : {highest[2]}")
     print(f"Amount      : Rs. {float(highest[3]):.2f}")
+
+def lowest_expense():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    with open(FILE_NAME, "r") as file:
+        reader = csv.reader(file)
+
+        next(reader)
+
+        expenses = list(reader)
+
+    if not expenses:
+        print("\nNo expenses found.")
+        return
+
+    lowest = min(expenses, key=lambda row: float(row[3]))
+
+    print("\n===== Lowest Expense =====")
+    print(f"Date        : {lowest[0]}")
+    print(f"Category    : {lowest[1]}")
+    print(f"Description : {lowest[2]}")
+    print(f"Amount      : Rs. {float(lowest[3]):.2f}")
+    
 if __name__ == "__main__":
     main()
