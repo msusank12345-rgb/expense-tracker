@@ -184,13 +184,23 @@ def delete_expense():
         choice = int(input("\nEnter expense number to delete: "))
 
         if 1 <= choice <= len(reader) - 1:
-            deleted = reader.pop(choice)
 
-            with open(FILE_NAME, "w", newline="") as file:
-                writer = csv.writer(file)
-                writer.writerows(reader)
+            print("\nSelected Expense:")
+            print(" | ".join(reader[choice]))
 
-            print(f"\nDeleted: {' | '.join(deleted)}")
+            confirm = input("\nAre you sure you want to delete this expense? (Y/N): ").strip().lower()
+
+            if confirm == "y":
+                deleted = reader.pop(choice)
+
+                with open(FILE_NAME, "w", newline="") as file:
+                    writer = csv.writer(file)
+                    writer.writerows(reader)
+
+                print(f"\nDeleted: {' | '.join(deleted)}")
+            else:
+                print("Deletion cancelled.")
+
         else:
             print("Invalid expense number.")
 
