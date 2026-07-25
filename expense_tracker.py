@@ -396,6 +396,30 @@ def lowest_expense():
     print(f"Category    : {lowest[1]}")
     print(f"Description : {lowest[2]}")
     print(f"Amount      : Rs. {float(lowest[3]):.2f}")
-    
+
+def average_expense():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    with open(FILE_NAME, "r") as file:
+        reader = csv.reader(file)
+
+        next(reader)
+
+        expenses = list(reader)
+
+    if not expenses:
+        print("\nNo expenses found.")
+        return
+
+    total = sum(float(row[3]) for row in expenses)
+    average = total / len(expenses)
+
+    print("\n===== Expense Statistics =====")
+    print(f"Total Expenses    : Rs. {total:.2f}")
+    print(f"Number of Records : {len(expenses)}")
+    print(f"Average Expense   : Rs. {average:.2f}")
+
 if __name__ == "__main__":
     main()
