@@ -1,5 +1,4 @@
 import csv
-from itertools import count
 import os
 
 FILE_NAME = "expenses.csv"
@@ -20,7 +19,10 @@ def main():
         print("7. Sort Expenses by Amount")
         print("8. Monthly Report")
         print("9. Expense Summary")
-        print("10. Exit")
+        print("10. Highest Expense")
+        print("11. Lowest Expense")
+        print("12. Average Expense")
+        print("13. Exit")
 
         choice = input("\nChoose an option: ")
 
@@ -43,8 +45,14 @@ def main():
         elif choice == "9":
          expense_summary()
         elif choice == "10":
-         print("Thank you for using Expense Tracker. Goodbye!")
-         break
+         highest_expense()
+        elif choice == "11":
+         lowest_expense()
+        elif choice == "12":
+          average_expense()
+        elif choice == "13":
+            print("Thank you for using Expense Tracker. Goodbye!")
+            break
         else:
          print("Invalid choice.")
 
@@ -340,5 +348,29 @@ def expense_summary():
     print("-" * 40)
     print(f"Grand Total: Rs. {grand_total:.2f}")
 
+
+def highest_expense():
+    if not os.path.exists(FILE_NAME):
+        print("\nNo expenses found.")
+        return
+
+    with open(FILE_NAME, "r") as file:
+        reader = csv.reader(file)
+
+        next(reader)
+
+        expenses = list(reader)
+
+    if not expenses:
+        print("\nNo expenses found.")
+        return
+
+    highest = max(expenses, key=lambda row: float(row[3]))
+
+    print("\n===== Highest Expense =====")
+    print(f"Date        : {highest[0]}")
+    print(f"Category    : {highest[1]}")
+    print(f"Description : {highest[2]}")
+    print(f"Amount      : Rs. {float(highest[3]):.2f}")
 if __name__ == "__main__":
     main()
