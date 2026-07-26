@@ -70,9 +70,21 @@ python expense_tracker.py
 
 ## 📸 Screenshots
 
-Screenshots of the application will be added soon.
+### Main Menu
 
----
+![Main Menu](images/main-menu.png)
+
+### Add Expense
+
+![Add Expense](images/add-expense.png)
+
+### View Expenses
+
+![View Expenses](images/view-expenses.png)
+
+### Search by Category
+
+![Search by Category](images/search-category.png)
 
 ## 📋 Menu Options
 
