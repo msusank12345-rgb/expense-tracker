@@ -35,14 +35,16 @@ A beginner-friendly Python command-line application for managing daily expenses 
 
 ## 📂 Project Structure
 
-```text
 expense-tracker-python/
 │
 ├── expense_tracker.py
 ├── expenses.csv
 ├── README.md
 └── images/
-```
+├── main-menu.png
+├── add-expense.png
+├── view-expenses.png
+└── search-category.png
 
 ---
 
@@ -51,7 +53,7 @@ expense-tracker-python/
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/your-username/expense-tracker-python.git
+git clone https://github.com/msusank12345-rgb/expense-tracker
 ```
 
 2. Navigate to the project folder:
